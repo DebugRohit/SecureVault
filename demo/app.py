@@ -19,15 +19,22 @@ def create_app() -> Flask:
         static_url_path="/static",
     )
 
+    is_production = os.environ.get("RENDER") == "true"
+
     app.config.update(
-        SECRET_KEY=os.environ.get(
-            "SECUREVAULT_DEMO_SECRET",
-            "securevault-recruiter-demo-local-only",
-        ),
+        SECRET_KEY=os.environ.get("SECUREVAULT_DEMO_SECRET"),
         SESSION_COOKIE_HTTPONLY=True,
         SESSION_COOKIE_SAMESITE="Lax",
-        SESSION_COOKIE_SECURE=False,
+        SESSION_COOKIE_SECURE=is_production,
     )
+
+    if not app.config["SECRET_KEY"]:
+        if is_production:
+            raise RuntimeError(
+                "SECUREVAULT_DEMO_SECRET must be configured in production."
+            )
+
+        app.config["SECRET_KEY"] = "securevault-recruiter-demo-local-only"
 
     app.register_blueprint(routes)
 

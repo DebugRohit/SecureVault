@@ -1,5 +1,8 @@
 """Configuration for the SecureVault recruiter demonstration."""
 
+from __future__ import annotations
+
+import os
 from pathlib import Path
 
 
@@ -10,6 +13,6 @@ TEMPLATES_DIR = DEMO_DIR / "templates"
 STATIC_DIR = DEMO_DIR / "static"
 BACKGROUND_IMAGE = STATIC_DIR / "images" / "spiderman.jpg"
 
-HOST = "127.0.0.1"
-PORT = 80
-DEBUG = False
+HOST = os.environ.get("HOST", "127.0.0.1")
+PORT = int(os.environ.get("PORT", "5000"))
+DEBUG = os.environ.get("FLASK_DEBUG", "false").lower() == "true"
