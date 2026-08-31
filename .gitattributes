@@ -1,0 +1,6 @@
+﻿requirements.txt text
+*.txt text
+*.md text
+*.toml text
+*.yml text
+*.yaml text

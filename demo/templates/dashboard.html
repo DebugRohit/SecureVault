@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="SecureVault secure credential management dashboard"
+    >
+
+    <title>
+        SecureVault | Dashboard
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/dashboard.css') }}"
+    >
+
+</head>
+
+<body>
+
+<main class="dashboard-shell">
+
+    <div class="dashboard-background"></div>
+
+    <div class="dashboard-overlay"></div>
+
+
+    <header class="dashboard-header">
+
+        <div class="dashboard-brand">
+
+            <div
+                class="dashboard-brand-mark"
+                aria-hidden="true"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="dashboard-brand-copy">
+
+                <div class="dashboard-brand-title">
+                    SECUREVAULT
+                </div>
+
+                <div class="dashboard-brand-subtitle">
+                    SECURE CREDENTIAL MANAGEMENT
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="session-area">
+
+            <div class="session-status">
+
+                <span class="session-dot"></span>
+
+                <span>
+                    SECURE SESSION
+                </span>
+
+            </div>
+
+            <button
+                type="button"
+                id="logoutButton"
+                class="logout-button"
+            >
+                LOCK VAULT
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <section class="dashboard-content">
+
+
+        <div class="dashboard-heading">
+
+            <div class="dashboard-heading-copy">
+
+                <div class="section-kicker">
+                    VAULT CONTROL CENTER
+                </div>
+
+                <h1>
+                    SecureVault
+                    <span>Dashboard</span>
+                </h1>
+
+                <p>
+                    Manage encrypted credentials through a
+                    protected demonstration environment.
+                </p>
+
+            </div>
+
+
+            <div class="vault-state">
+
+                <span class="vault-state-dot"></span>
+
+                <div class="vault-state-copy">
+
+                    <strong>
+                        VAULT PROTECTED
+                    </strong>
+
+                    <small>
+                        ENCRYPTED STORAGE ACTIVE
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <section
+            class="summary-grid"
+            aria-label="Vault summary"
+        >
+
+            <article class="summary-card">
+
+                <div class="summary-label">
+                    CREDENTIALS
+                </div>
+
+                <div
+                    id="credentialCount"
+                    class="summary-value"
+                >
+                    —
+                </div>
+
+                <div class="summary-detail">
+                    Stored securely
+                </div>
+
+            </article>
+
+
+            <article class="summary-card">
+
+                <div class="summary-label">
+                    ENCRYPTION
+                </div>
+
+                <div class="summary-value">
+                    ACTIVE
+                </div>
+
+                <div class="summary-detail">
+                    Protected storage
+                </div>
+
+            </article>
+
+
+            <article class="summary-card">
+
+                <div class="summary-label">
+                    BACKUPS
+                </div>
+
+                <div
+                    id="backupCount"
+                    class="summary-value"
+                >
+                    —
+                </div>
+
+                <div class="summary-detail">
+                    Encrypted backup
+                </div>
+
+            </article>
+
+
+            <article class="summary-card">
+
+                <div class="summary-label">
+                    SECURITY
+                </div>
+
+                <div class="summary-value">
+                    READY
+                </div>
+
+                <div class="summary-detail">
+                    Demo environment
+                </div>
+
+            </article>
+
+        </section>
+
+
+        <section class="dashboard-grid">
+
+
+            <article class="glass-panel credentials-panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <div class="panel-kicker">
+                            ENCRYPTED STORAGE
+                        </div>
+
+                        <h2>
+                            Credential Vault
+                        </h2>
+
+                    </div>
+
+                    <button
+                        type="button"
+                        id="refreshVault"
+                        class="panel-action"
+                    >
+                        REFRESH
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="credentialSelectionBar"
+                    class="credential-selection-bar"
+                    hidden
+                >
+
+                    <span id="selectionCount">
+                        0 SELECTED
+                    </span>
+
+                    <button
+                        type="button"
+                        id="deleteSelectedButton"
+                        class="selection-delete-button"
+                    >
+                        DELETE SELECTED
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="credentialList"
+                    class="credential-list"
+                >
+
+                    <div class="loading-state">
+                        Loading secure credentials...
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <article class="glass-panel activity-panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <div class="panel-kicker">
+                            SECURITY MONITOR
+                        </div>
+
+                        <h2>
+                            Activity
+                        </h2>
+
+                    </div>
+
+                    <span class="live-indicator">
+                        LIVE
+                    </span>
+
+                </div>
+
+
+                <div
+                    id="activityList"
+                    class="activity-list"
+                >
+
+                    <div class="activity-item">
+
+                        <span
+                            class="activity-marker"
+                        ></span>
+
+                        <div>
+
+                            <strong>
+                                Vault session established
+                            </strong>
+
+                            <small>
+                                Secure demo environment active
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="activity-item">
+
+                        <span
+                            class="activity-marker"
+                        ></span>
+
+                        <div>
+
+                            <strong>
+                                Encrypted storage verified
+                            </strong>
+
+                            <small>
+                                Credential protection available
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="activity-item">
+
+                        <span
+                            class="activity-marker"
+                        ></span>
+
+                        <div>
+
+                            <strong>
+                                Authentication successful
+                            </strong>
+
+                            <small>
+                                Demo master password accepted
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+        </section>
+
+
+        <section class="quick-actions-section">
+
+            <div class="section-kicker">
+                SECURE OPERATIONS
+            </div>
+
+
+            <div class="quick-actions-grid">
+
+
+                <button
+                    type="button"
+                    class="quick-action"
+                    id="addCredentialButton"
+                >
+
+                    <span
+                        class="quick-action-icon"
+                        aria-hidden="true"
+                    >
+                        +
+                    </span>
+
+                    <span>
+                        ADD CREDENTIAL
+                    </span>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="quick-action"
+                    id="deleteCredentialButton"
+                >
+
+                    <span
+                        class="quick-action-icon"
+                        aria-hidden="true"
+                    >
+                        −
+                    </span>
+
+                    <span>
+                        DELETE CREDENTIAL
+                    </span>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="quick-action"
+                    id="backupButton"
+                >
+
+                    <span
+                        class="quick-action-icon"
+                        aria-hidden="true"
+                    >
+                        ↻
+                    </span>
+
+                    <span>
+                        CREATE BACKUP
+                    </span>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="quick-action"
+                    id="securityButton"
+                >
+
+                    <span
+                        class="quick-action-icon"
+                        aria-hidden="true"
+                    >
+                        ◈
+                    </span>
+
+                    <span>
+                        SECURITY STATUS
+                    </span>
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+    </section>
+
+
+    <footer
+        class="dashboard-owner"
+        aria-label="Project owner"
+    >
+
+        <span class="dashboard-owner-label">
+            OWNER
+        </span>
+
+        <span class="dashboard-owner-divider">
+            —
+        </span>
+
+        <strong class="dashboard-owner-name">
+            Rohit Pujari
+        </strong>
+
+    </footer>
+
+
+</main>
+
+
+<script
+    src="{{ url_for('static', filename='js/dashboard.js') }}"
+></script>
+
+</body>
+
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="SecureVault interactive recruiter demonstration"
+    >
+
+    <title>SecureVault | Recruiter Demo</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+</head>
+
+<body class="login-page">
+
+    <main class="hero-shell">
+
+        <div class="background-layer"></div>
+        <div class="background-vignette"></div>
+
+        <div class="system-label system-label-top">
+            SECUREVAULT / SECURITY SYSTEM
+        </div>
+
+        <section class="glass-login-card">
+
+            <header class="brand-header">
+
+                <div class="brand-icon" aria-hidden="true">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <div class="brand-copy">
+
+                    <div class="brand-title">
+                        SECUREVAULT
+                    </div>
+
+                    <div class="brand-subtitle">
+                        SECURE CREDENTIAL MANAGEMENT
+                    </div>
+
+                </div>
+
+            </header>
+
+            <div class="login-content">
+
+                <div class="eyebrow">
+                    INTERACTIVE RECRUITER DEMONSTRATION
+                </div>
+
+                <h1>
+                    Security <span>starts here.</span>
+                </h1>
+
+                <p class="intro">
+                    Explore a secure credential-management workflow through an isolated demonstration environment.
+                </p>
+
+                <div class="status-grid">
+
+                    <div class="status-card">
+
+                        <div class="status-dot"></div>
+
+                        <div class="status-copy">
+
+                            <div class="status-title">
+                                SYSTEM READY
+                            </div>
+
+                            <div class="status-description">
+                                Demo environment protected
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="demo-access-card">
+
+                        <div class="demo-access-title">
+                            DEMO ACCESS PASSWORD
+                        </div>
+
+                        <button
+                            type="button"
+                            id="fillDemoPassword"
+                            class="demo-password"
+                            aria-label="Use demo access password"
+                        >
+                            DebugRohit@1995
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div class="login-form">
+
+                    <label for="demoPassword">
+                        DEMO MASTER PASSWORD
+                    </label>
+
+                    <div class="password-wrapper">
+
+                        <input
+                            id="demoPassword"
+                            type="password"
+                            autocomplete="off"
+                            placeholder="Enter demo password"
+                        >
+
+                        <button
+                            type="button"
+                            id="togglePassword"
+                            aria-label="Show password"
+                        >
+                            SHOW
+                        </button>
+
+                    </div>
+
+                    <button
+                        type="button"
+                        id="unlockButton"
+                        class="unlock-button"
+                    >
+                        <span>UNLOCK SECUREVAULT</span>
+                        <span class="arrow">→</span>
+                    </button>
+
+                    <div
+                        id="loginMessage"
+                        class="login-message"
+                        role="alert"
+                    ></div>
+
+                </div>
+
+            </div>
+
+            <!-- =================================================
+                 PROJECT OWNER
+                 ================================================= -->
+
+            <div
+                class="owner-profile"
+                aria-label="Project owner Rohit Pujari"
+            >
+
+                <div class="owner-avatar" aria-hidden="true">
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <circle
+                            cx="12"
+                            cy="8"
+                            r="3.2"
+                        />
+
+                        <path
+                            d="M5.5 19.2c.7-3.1 3.1-5 6.5-5s5.8 1.9 6.5 5"
+                        />
+
+                    </svg>
+
+                </div>
+
+                <div class="owner-information">
+
+                    <div class="owner-label">
+                        OWNER
+                    </div>
+
+                    <div class="owner-name">
+                        Rohit Pujari
+                    </div>
+
+                    <div class="owner-line"></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script
+        src="{{ url_for('static', filename='js/app.js') }}"
+    ></script>
+
+</body>
+</html>

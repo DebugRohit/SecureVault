@@ -1,0 +1,927 @@
+:root {
+    --white: #ffffff;
+    --soft-white: rgba(255, 255, 255, 0.78);
+    --muted-white: rgba(255, 255, 255, 0.45);
+    --glass: rgba(8, 12, 18, 0.57);
+    --border: rgba(255, 255, 255, 0.16);
+    --success: #73e5a5;
+    --danger: #ff7777;
+    --dark: #07090d;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    background: var(--dark);
+    color: var(--white);
+
+    font-family:
+        Inter,
+        "Segoe UI",
+        Helvetica,
+        Arial,
+        sans-serif;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+/* =========================================================
+   MAIN SCREEN
+   ========================================================= */
+
+.hero-shell {
+    position: relative;
+
+    min-height: 100vh;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    padding: 48px clamp(24px, 7vw, 110px);
+
+    isolation: isolate;
+}
+
+/* =========================================================
+   BACKGROUND
+   ========================================================= */
+
+.background-layer {
+    position: absolute;
+    inset: 0;
+
+    z-index: -3;
+
+    background-image: url("/static/images/spiderman.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    transform: scale(1.02);
+}
+
+.background-vignette {
+    position: absolute;
+    inset: 0;
+
+    z-index: -2;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(3, 5, 9, 0.04) 0%,
+            rgba(3, 5, 9, 0.10) 32%,
+            rgba(3, 5, 9, 0.47) 61%,
+            rgba(3, 5, 9, 0.88) 100%
+        );
+}
+
+.background-vignette::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at 72% 50%,
+            transparent 0%,
+            rgba(0, 0, 0, 0.18) 42%,
+            rgba(0, 0, 0, 0.42) 100%
+        );
+}
+
+/* =========================================================
+   GLASS PANEL
+   ========================================================= */
+
+.glass-login-card {
+    position: relative;
+
+    width: min(560px, 100%);
+    min-height: 680px;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: flex-start;
+
+    padding: 38px 40px 34px;
+
+    border: 1px solid var(--border);
+    border-radius: 25px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.075),
+            rgba(255, 255, 255, 0.025)
+        ),
+        var(--glass);
+
+    backdrop-filter: blur(26px) saturate(130%);
+    -webkit-backdrop-filter: blur(26px) saturate(130%);
+
+    box-shadow:
+        0 35px 100px rgba(0, 0, 0, 0.48),
+        inset 0 1px 0 rgba(255, 255, 255, 0.13);
+}
+
+.glass-login-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 13%;
+    right: 13%;
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.55),
+            transparent
+        );
+}
+
+/* =========================================================
+   BRAND
+   ========================================================= */
+
+.brand-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.brand-icon {
+    width: 54px;
+    height: 54px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 4px;
+
+    flex: 0 0 auto;
+
+    border: 1px solid rgba(255, 255, 255, 0.20);
+    border-radius: 15px;
+
+    background: rgba(255, 255, 255, 0.065);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.brand-icon span {
+    display: block;
+
+    width: 4px;
+    height: 17px;
+
+    border-radius: 5px;
+
+    background: rgba(255, 255, 255, 0.78);
+
+    transform: skewX(-22deg);
+}
+
+.brand-icon span:nth-child(2) {
+    height: 23px;
+}
+
+.brand-icon span:nth-child(3) {
+    height: 19px;
+}
+
+.brand-title {
+    font-size: 53px;
+    font-weight: 650;
+
+    line-height: 0.96;
+
+    letter-spacing: -0.052em;
+
+    white-space: nowrap;
+}
+
+.brand-subtitle {
+    margin-top: 9px;
+
+    color: rgba(255, 255, 255, 0.43);
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 0.18em;
+
+    white-space: nowrap;
+}
+
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
+
+.login-content {
+    margin-top: 42px;
+}
+
+.eyebrow {
+    width: 100%;
+
+    margin-bottom: 18px;
+
+    color: rgba(255, 255, 255, 0.56);
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 0.18em;
+
+    text-align: center;
+
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 7px;
+
+    white-space: nowrap;
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: 650;
+
+    line-height: 1;
+
+    letter-spacing: -0.035em;
+
+    white-space: nowrap;
+}
+
+h1 span {
+    display: inline;
+
+    color: rgba(255, 255, 255, 0.53);
+}
+
+.intro {
+    width: 100%;
+
+    margin-top: 18px;
+
+    color: var(--soft-white);
+
+    font-size: 11.5px;
+    line-height: 1.5;
+
+    letter-spacing: -0.015em;
+
+    white-space: nowrap;
+}
+
+/* =========================================================
+   STATUS + DEMO ACCESS
+   ========================================================= */
+
+.status-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1fr);
+
+    gap: 12px;
+
+    margin-top: 25px;
+}
+
+.status-card,
+.demo-access-card {
+    min-height: 76px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 13px 15px;
+
+    border: 1px solid rgba(255, 255, 255, 0.11);
+    border-radius: 13px;
+
+    background: rgba(255, 255, 255, 0.035);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+/* =========================================================
+   SYSTEM STATUS
+   ========================================================= */
+
+.status-card {
+    gap: 12px;
+
+    border-color: rgba(115, 229, 165, 0.14);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(115, 229, 165, 0.055),
+            rgba(255, 255, 255, 0.025)
+        );
+}
+
+.status-dot {
+    position: relative;
+
+    width: 9px;
+    height: 9px;
+
+    flex: 0 0 auto;
+
+    border-radius: 50%;
+
+    background: var(--success);
+
+    box-shadow:
+        0 0 13px rgba(115, 229, 165, 0.7);
+}
+
+.status-dot::after {
+    content: "";
+
+    position: absolute;
+
+    inset: -4px;
+
+    border: 1px solid rgba(115, 229, 165, 0.25);
+    border-radius: 50%;
+
+    animation: statusPulse 2.1s infinite;
+}
+
+.status-copy {
+    min-width: 0;
+}
+
+.status-title {
+    font-size: 10px;
+    font-weight: 850;
+
+    letter-spacing: 0.13em;
+
+    white-space: nowrap;
+}
+
+.status-description {
+    margin-top: 5px;
+
+    color: var(--muted-white);
+
+    font-size: 10px;
+
+    white-space: nowrap;
+}
+
+/* =========================================================
+   DEMO ACCESS CARD
+   ========================================================= */
+
+.demo-access-card {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    text-align: center;
+
+    border-color: rgba(255, 255, 255, 0.13);
+}
+
+.demo-access-title {
+    color: #ffffff;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 0.15em;
+
+    white-space: nowrap;
+}
+
+.demo-password {
+    max-width: 100%;
+
+    padding: 0;
+
+    color: #ffffff;
+
+    background: transparent;
+
+    border: 0;
+
+    font-family:
+        "Cascadia Code",
+        Consolas,
+        monospace;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    letter-spacing: 0.01em;
+
+    white-space: nowrap;
+
+    text-shadow:
+        0 0 12px rgba(255, 255, 255, 0.10);
+
+    transition:
+        color 160ms ease,
+        transform 160ms ease,
+        text-shadow 160ms ease;
+}
+
+.demo-password:hover {
+    color: #ffffff;
+
+    transform: translateY(-1px);
+
+    text-shadow:
+        0 0 18px rgba(255, 255, 255, 0.22);
+}
+
+/* =========================================================
+   LOGIN FORM
+   ========================================================= */
+
+.login-form {
+    margin-top: 23px;
+}
+
+.login-form label {
+    display: block;
+
+    margin-bottom: 9px;
+
+    color: rgba(255, 255, 255, 0.52);
+
+    font-size: 8px;
+    font-weight: 850;
+
+    letter-spacing: 0.17em;
+}
+
+.password-wrapper {
+    display: flex;
+    align-items: center;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    border-radius: 12px;
+
+    background: rgba(0, 0, 0, 0.22);
+
+    transition:
+        border-color 180ms ease,
+        background 180ms ease;
+}
+
+.password-wrapper:focus-within {
+    border-color: rgba(255, 255, 255, 0.31);
+
+    background: rgba(0, 0, 0, 0.30);
+}
+
+.password-wrapper input {
+    width: 100%;
+    min-width: 0;
+
+    padding: 15px 14px;
+
+    color: var(--white);
+
+    background: transparent;
+
+    border: 0;
+    outline: 0;
+
+    font-size: 12px;
+
+    letter-spacing: 0.04em;
+}
+
+.password-wrapper input::placeholder {
+    color: rgba(255, 255, 255, 0.25);
+}
+
+.password-wrapper button {
+    padding: 0 15px;
+
+    color: rgba(255, 255, 255, 0.40);
+
+    background: transparent;
+
+    border: 0;
+
+    font-size: 8px;
+    font-weight: 850;
+
+    letter-spacing: 0.12em;
+}
+
+.password-wrapper button:hover {
+    color: var(--white);
+}
+
+/* =========================================================
+   UNLOCK BUTTON
+   ========================================================= */
+
+.unlock-button {
+    width: 100%;
+
+    margin-top: 12px;
+
+    padding: 16px 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    color: #080a0e;
+
+    background: #f2f4f7;
+
+    border: 0;
+    border-radius: 12px;
+
+    font-size: 9px;
+    font-weight: 900;
+
+    letter-spacing: 0.15em;
+
+    transition:
+        transform 180ms ease,
+        background 180ms ease,
+        box-shadow 180ms ease;
+}
+
+.unlock-button:hover {
+    transform: translateY(-2px);
+
+    background: #ffffff;
+
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.30);
+}
+
+.unlock-button:active {
+    transform: translateY(0);
+}
+
+.unlock-button:disabled {
+    cursor: wait;
+    opacity: 0.65;
+}
+
+.arrow {
+    font-size: 19px;
+    font-weight: 400;
+
+    line-height: 0;
+
+    transition:
+        transform 180ms ease;
+}
+
+.unlock-button:hover .arrow {
+    transform: translateX(4px);
+}
+
+.login-message {
+    min-height: 18px;
+
+    margin-top: 8px;
+
+    color: var(--danger);
+
+    font-size: 9px;
+}
+
+/* =========================================================
+   PROJECT OWNER
+   ========================================================= */
+
+.owner-profile {
+    position: absolute;
+
+    right: 40px;
+    bottom: 28px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+
+    min-width: 175px;
+
+    color: #ffffff;
+}
+
+.owner-avatar {
+    width: 42px;
+    height: 42px;
+
+    flex: 0 0 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(255, 255, 255, 0.34);
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.035);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.10),
+        0 8px 22px rgba(0, 0, 0, 0.20);
+}
+
+.owner-avatar svg {
+    width: 22px;
+    height: 22px;
+
+    fill: none;
+
+    stroke: rgba(255, 255, 255, 0.90);
+
+    stroke-width: 1.45;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.owner-information {
+    display: flex;
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    min-width: 0;
+}
+
+.owner-label {
+    color: rgba(255, 255, 255, 0.68);
+
+    font-size: 8px;
+    font-weight: 800;
+
+    letter-spacing: 0.20em;
+
+    line-height: 1;
+}
+
+.owner-name {
+    margin-top: 5px;
+
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    letter-spacing: 0.06em;
+
+    line-height: 1.1;
+
+    white-space: nowrap;
+
+    text-shadow:
+        0 0 14px rgba(255, 255, 255, 0.12);
+}
+
+.owner-line {
+    width: 100%;
+    max-width: 116px;
+
+    height: 1px;
+
+    margin-top: 6px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.70),
+            rgba(255, 255, 255, 0.08)
+        );
+}
+
+/* =========================================================
+   SCREEN LABEL
+   ========================================================= */
+
+.system-label {
+    position: absolute;
+
+    color: rgba(255, 255, 255, 0.34);
+
+    font-size: 7px;
+    font-weight: 800;
+
+    letter-spacing: 0.18em;
+}
+
+.system-label-top {
+    top: 30px;
+    left: 38px;
+}
+
+/* =========================================================
+   ANIMATION
+   ========================================================= */
+
+@keyframes statusPulse {
+    0%,
+    100% {
+        opacity: 0.7;
+        transform: scale(0.85);
+    }
+
+    50% {
+        opacity: 0;
+        transform: scale(1.45);
+    }
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .hero-shell {
+        justify-content: center;
+
+        padding: 30px 20px;
+    }
+
+    .glass-login-card {
+        min-height: 650px;
+    }
+
+    .system-label {
+        display: none;
+    }
+}
+
+@media (max-width: 620px) {
+
+    .glass-login-card {
+        width: 100%;
+
+        padding: 30px 25px 32px;
+    }
+
+    .brand-title {
+        font-size: 40px;
+    }
+
+    .brand-subtitle {
+        font-size: 8px;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    .intro {
+        font-size: 10px;
+    }
+
+    .status-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .eyebrow {
+        font-size: 8px;
+    }
+
+    .owner-profile {
+        right: 25px;
+    }
+}
+
+@media (max-width: 460px) {
+
+    .hero-shell {
+        min-height: 100svh;
+
+        padding: 14px;
+    }
+
+    .glass-login-card {
+        min-height: 620px;
+
+        padding: 27px 21px 28px;
+
+        border-radius: 20px;
+    }
+
+    .brand-icon {
+        width: 48px;
+        height: 48px;
+    }
+
+    .brand-title {
+        font-size: 32px;
+    }
+
+    .brand-subtitle {
+        margin-top: 5px;
+
+        font-size: 6px;
+    }
+
+    .login-content {
+        margin-top: 30px;
+    }
+
+    .eyebrow {
+        font-size: 7px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    .intro {
+        font-size: 9px;
+    }
+
+    .status-card,
+    .demo-access-card {
+        min-height: 70px;
+    }
+
+    .demo-password {
+        font-size: 13px;
+    }
+
+    .owner-profile {
+        right: 21px;
+        bottom: 22px;
+
+        gap: 8px;
+
+        min-width: 145px;
+    }
+
+    .owner-avatar {
+        width: 36px;
+        height: 36px;
+
+        flex-basis: 36px;
+    }
+
+    .owner-avatar svg {
+        width: 19px;
+        height: 19px;
+    }
+
+    .owner-label {
+        font-size: 7px;
+    }
+
+    .owner-name {
+        font-size: 11px;
+    }
+
+    .owner-line {
+        max-width: 100px;
+    }
+}

@@ -1,0 +1,42 @@
+# Python Cache
+__pycache__/
+*.py[cod]
+
+# Virtual Environment
+venv/
+.env
+
+#Logs
+logs/
+*.log
+
+# VS Code
+.vscode/
+
+# Operating System
+.DS_Store
+Thumbs.db
+
+# Testing
+.pytest_cache/
+
+# Coverage
+.coverage
+htmlcov/
+
+#Build files
+build?
+dist/
+*.egg-info/
+
+#Local data (Keep encrypted secrets out of Git)
+data/secret.key
+data/master.hash
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+data/vault.json
+data/backups/
+
+

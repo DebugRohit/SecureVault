@@ -1,0 +1,1592 @@
+:root {
+    --white: #ffffff;
+    --primary-text: rgba(255, 255, 255, 0.92);
+    --secondary-text: rgba(255, 255, 255, 0.58);
+    --muted-text: rgba(255, 255, 255, 0.38);
+
+    --glass: rgba(7, 10, 15, 0.58);
+    --glass-light: rgba(255, 255, 255, 0.045);
+
+    --border: rgba(255, 255, 255, 0.13);
+    --border-strong: rgba(255, 255, 255, 0.20);
+
+    --success: #73e5a5;
+
+    --dark: #05070a;
+}
+
+
+/* =========================================================
+   GLOBAL
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+
+    overflow-x: hidden;
+
+    background: var(--dark);
+    color: var(--primary-text);
+
+    font-family:
+        Inter,
+        "Segoe UI",
+        Helvetica,
+        Arial,
+        sans-serif;
+
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+button {
+    font: inherit;
+    cursor: pointer;
+}
+
+button:focus-visible {
+    outline: 1px solid rgba(255, 255, 255, 0.55);
+    outline-offset: 3px;
+}
+
+
+/* =========================================================
+   DASHBOARD SHELL
+   ========================================================= */
+
+.dashboard-shell {
+    position: relative;
+
+    min-height: 100vh;
+
+    overflow: hidden;
+
+    padding: 0 48px 42px;
+
+    isolation: isolate;
+}
+
+
+/* =========================================================
+   BACKGROUND
+   ========================================================= */
+
+.dashboard-background {
+    position: fixed;
+    inset: 0;
+
+    z-index: -3;
+
+    background-image:
+        url("/static/images/spiderman.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    transform: scale(1.02);
+}
+
+.dashboard-overlay {
+    position: fixed;
+    inset: 0;
+
+    z-index: -2;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(2, 4, 7, 0.54) 0%,
+            rgba(2, 4, 7, 0.48) 42%,
+            rgba(2, 4, 7, 0.68) 100%
+        );
+
+    pointer-events: none;
+}
+
+.dashboard-overlay::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at 72% 42%,
+            rgba(255, 255, 255, 0.035),
+            transparent 42%
+        );
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.dashboard-header {
+    position: relative;
+
+    min-height: 92px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+
+/* =========================================================
+   BRAND
+   ========================================================= */
+
+.dashboard-brand {
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+}
+
+.dashboard-brand-mark {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 3px;
+
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.045);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.dashboard-brand-mark span {
+    display: block;
+
+    width: 3px;
+    height: 13px;
+
+    border-radius: 4px;
+
+    background: rgba(255, 255, 255, 0.78);
+
+    transform: skewX(-22deg);
+}
+
+.dashboard-brand-mark span:nth-child(2) {
+    height: 18px;
+}
+
+.dashboard-brand-mark span:nth-child(3) {
+    height: 15px;
+}
+
+.dashboard-brand-title {
+    color: #ffffff;
+
+    font-size: 30px;
+    font-weight: 650;
+
+    line-height: 0.95;
+
+    letter-spacing: -0.045em;
+
+    white-space: nowrap;
+}
+
+.dashboard-brand-subtitle {
+    margin-top: 6px;
+
+    color: rgba(255, 255, 255, 0.40);
+
+    font-size: 8px;
+    font-weight: 800;
+
+    line-height: 1;
+
+    letter-spacing: 0.18em;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   SESSION
+   ========================================================= */
+
+.session-area {
+    display: flex;
+    align-items: center;
+
+    gap: 18px;
+}
+
+.session-status {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    color: rgba(255, 255, 255, 0.60);
+
+    font-size: 8px;
+    font-weight: 800;
+
+    letter-spacing: 0.15em;
+
+    white-space: nowrap;
+}
+
+.session-dot {
+    position: relative;
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: var(--success);
+
+    box-shadow:
+        0 0 12px rgba(115, 229, 165, 0.70);
+}
+
+.session-dot::after {
+    content: "";
+
+    position: absolute;
+
+    inset: -4px;
+
+    border: 1px solid rgba(115, 229, 165, 0.25);
+    border-radius: 50%;
+}
+
+
+/* =========================================================
+   LOCK VAULT
+   ========================================================= */
+
+.logout-button {
+    padding: 9px 13px;
+
+    color: #05070a;
+
+    background: #ffffff;
+
+    border: 1px solid #ffffff;
+    border-radius: 8px;
+
+    font-size: 8px;
+    font-weight: 800;
+
+    letter-spacing: 0.13em;
+
+    transition:
+        color 160ms ease,
+        background 160ms ease,
+        border-color 160ms ease;
+}
+
+.logout-button:hover {
+    color: #05070a;
+
+    background: rgba(255, 255, 255, 0.92);
+
+    border-color: rgba(255, 255, 255, 0.92);
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
+
+.dashboard-content {
+    width: min(1260px, 100%);
+
+    margin: 0 auto;
+
+    padding-top: 46px;
+}
+
+
+/* =========================================================
+   DASHBOARD HEADING
+   ========================================================= */
+
+.dashboard-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    gap: 30px;
+}
+
+.section-kicker {
+    color: rgba(255, 255, 255, 0.44);
+
+    font-size: 9px;
+    font-weight: 800;
+
+    line-height: 1;
+
+    letter-spacing: 0.19em;
+
+    text-transform: uppercase;
+}
+
+.dashboard-heading h1 {
+    margin-top: 10px;
+
+    color: #ffffff;
+
+    font-size: 30px;
+    font-weight: 650;
+
+    line-height: 1;
+
+    letter-spacing: -0.045em;
+}
+
+.dashboard-heading h1 span {
+    color: rgba(255, 255, 255, 0.45);
+
+    font-weight: 400;
+}
+
+.dashboard-heading p {
+    margin-top: 11px;
+
+    color: rgba(255, 255, 255, 0.52);
+
+    font-size: 11px;
+    font-weight: 400;
+
+    line-height: 1.45;
+
+    letter-spacing: -0.01em;
+}
+
+
+/* =========================================================
+   VAULT STATE
+   ========================================================= */
+
+.vault-state {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 12px 15px;
+
+    border: 1px solid rgba(115, 229, 165, 0.13);
+    border-radius: 11px;
+
+    background:
+        rgba(115, 229, 165, 0.035);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.vault-state-dot {
+    width: 8px;
+    height: 8px;
+
+    flex: 0 0 auto;
+
+    border-radius: 50%;
+
+    background: var(--success);
+
+    box-shadow:
+        0 0 12px rgba(115, 229, 165, 0.60);
+}
+
+.vault-state-copy {
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+}
+
+.vault-state-copy strong {
+    color: rgba(255, 255, 255, 0.82);
+
+    font-size: 8px;
+    font-weight: 800;
+
+    letter-spacing: 0.14em;
+}
+
+.vault-state-copy small {
+    color: rgba(255, 255, 255, 0.38);
+
+    font-size: 7px;
+    font-weight: 500;
+
+    letter-spacing: 0.10em;
+}
+
+
+/* =========================================================
+   SUMMARY CARDS
+   ========================================================= */
+
+.summary-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 12px;
+
+    margin-top: 30px;
+}
+
+.summary-card {
+    min-height: 116px;
+
+    padding: 18px 19px;
+
+    border: 1px solid var(--border);
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.055),
+            rgba(255, 255, 255, 0.018)
+        ),
+        var(--glass);
+
+    backdrop-filter: blur(18px) saturate(125%);
+    -webkit-backdrop-filter: blur(18px) saturate(125%);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.055),
+        0 15px 45px rgba(0, 0, 0, 0.16);
+
+    transition:
+        border-color 180ms ease,
+        transform 180ms ease,
+        background 180ms ease;
+}
+
+.summary-card:hover {
+    transform: translateY(-2px);
+
+    border-color: rgba(255, 255, 255, 0.20);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.065),
+            rgba(255, 255, 255, 0.025)
+        ),
+        var(--glass);
+}
+
+.summary-label {
+    color: rgba(255, 255, 255, 0.42);
+
+    font-size: 8px;
+    font-weight: 800;
+
+    letter-spacing: 0.17em;
+}
+
+.summary-value {
+    margin-top: 13px;
+
+    color: #ffffff;
+
+    font-size: 24px;
+    font-weight: 650;
+
+    line-height: 1;
+
+    letter-spacing: -0.035em;
+}
+
+.summary-detail {
+    margin-top: 9px;
+
+    color: rgba(255, 255, 255, 0.34);
+
+    font-size: 9px;
+    font-weight: 400;
+
+    line-height: 1;
+}
+
+
+/* =========================================================
+   MAIN PANELS
+   ========================================================= */
+
+.dashboard-grid {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.7fr)
+        minmax(300px, 0.9fr);
+
+    gap: 14px;
+
+    margin-top: 14px;
+}
+
+.glass-panel {
+    position: relative;
+
+    min-width: 0;
+
+    padding: 22px;
+
+    border: 1px solid var(--border);
+    border-radius: 17px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.055),
+            rgba(255, 255, 255, 0.018)
+        ),
+        var(--glass);
+
+    backdrop-filter: blur(20px) saturate(125%);
+    -webkit-backdrop-filter: blur(20px) saturate(125%);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.065),
+        0 20px 55px rgba(0, 0, 0, 0.18);
+}
+
+
+/* =========================================================
+   PANEL HEADER
+   ========================================================= */
+
+.panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding-bottom: 17px;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.075);
+}
+
+.panel-kicker {
+    color: rgba(255, 255, 255, 0.36);
+
+    font-size: 8px;
+    font-weight: 800;
+
+    line-height: 1;
+
+    letter-spacing: 0.17em;
+}
+
+.panel-header h2 {
+    margin-top: 7px;
+
+    color: #ffffff;
+
+    font-size: 18px;
+    font-weight: 650;
+
+    line-height: 1;
+
+    letter-spacing: -0.025em;
+}
+
+.panel-action {
+    padding: 8px 11px;
+
+    color: rgba(255, 255, 255, 0.48);
+
+    background: rgba(255, 255, 255, 0.025);
+
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 7px;
+
+    font-size: 7px;
+    font-weight: 800;
+
+    letter-spacing: 0.14em;
+
+    transition:
+        color 160ms ease,
+        border-color 160ms ease,
+        background 160ms ease;
+}
+
+.panel-action:hover {
+    color: #ffffff;
+
+    background: rgba(255, 255, 255, 0.06);
+
+    border-color: rgba(255, 255, 255, 0.19);
+}
+
+
+/* =========================================================
+   CREDENTIAL LIST
+   ========================================================= */
+
+.credential-list {
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 4px;
+}
+
+.loading-state {
+    padding: 25px 4px;
+
+    color: rgba(255, 255, 255, 0.38);
+
+    font-size: 9px;
+
+    text-align: center;
+}
+
+.credential-item {
+    display: grid;
+
+    grid-template-columns:
+        24px
+        minmax(150px, 1.15fr)
+        minmax(130px, 1fr)
+        minmax(130px, 0.95fr)
+        auto;
+
+    align-items: center;
+
+    gap: 15px;
+
+    min-height: 57px;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.065);
+}
+
+.credential-item:last-child {
+    border-bottom: 0;
+}
+
+
+/* =========================================================
+   CIRCULAR CREDENTIAL CHECKBOX
+   ========================================================= */
+
+.credential-select {
+    width: 18px;
+    height: 18px;
+
+    margin: 0;
+
+    appearance: none;
+    -webkit-appearance: none;
+
+    flex: 0 0 auto;
+
+    border: 1px solid rgba(255, 255, 255, 0.48);
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.035);
+
+    cursor: pointer;
+
+    display: inline-grid;
+    place-content: center;
+
+    transition:
+        background 160ms ease,
+        border-color 160ms ease,
+        box-shadow 160ms ease,
+        transform 160ms ease;
+}
+
+.credential-select::before {
+    content: "";
+
+    width: 7px;
+    height: 4px;
+
+    border-left: 2px solid #05070a;
+    border-bottom: 2px solid #05070a;
+
+    transform: rotate(-45deg) scale(0);
+
+    transition: transform 120ms ease;
+}
+
+.credential-select:hover {
+    border-color: rgba(255, 255, 255, 0.78);
+
+    box-shadow:
+        0 0 0 3px rgba(255, 255, 255, 0.045);
+}
+
+.credential-select:checked {
+    background: #ffffff;
+
+    border-color: #ffffff;
+}
+
+.credential-select:checked::before {
+    transform: rotate(-45deg) scale(1);
+}
+
+.credential-select:focus-visible {
+    outline: 1px solid rgba(255, 255, 255, 0.75);
+    outline-offset: 3px;
+}
+
+
+/* =========================================================
+   CREDENTIAL DATA
+   ========================================================= */
+
+.credential-service {
+    color: rgba(255, 255, 255, 0.90);
+
+    font-size: 12px;
+    font-weight: 650;
+
+    white-space: nowrap;
+}
+
+.credential-username {
+    overflow: hidden;
+
+    color: rgba(255, 255, 255, 0.78);
+
+    font-size: 11px;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.credential-password {
+    color: rgba(255, 255, 255, 0.72);
+
+    font-family:
+        "Cascadia Code",
+        Consolas,
+        monospace;
+
+    font-size: 11px;
+
+    letter-spacing: 0.05em;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   CREDENTIAL ACTION
+   ========================================================= */
+
+.credential-actions {
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+}
+
+.credential-actions {
+    justify-self: end;
+
+    min-width: 0;
+}
+
+.credential-action {
+    white-space: nowrap;
+}
+
+.credential-action {
+    padding: 6px 8px;
+
+    color: rgba(255, 255, 255, 0.48);
+
+    background: transparent;
+
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 6px;
+
+    font-size: 9px;
+    font-weight: 800;
+
+    letter-spacing: 0.10em;
+
+    transition:
+        color 160ms ease,
+        border-color 160ms ease,
+        background 160ms ease;
+}
+
+.credential-action:hover {
+    color: #ffffff;
+
+    background: rgba(255, 255, 255, 0.045);
+
+    border-color: rgba(255, 255, 255, 0.18);
+}
+
+
+/* =========================================================
+   ACTIVITY
+   ========================================================= */
+
+.live-indicator {
+    padding: 5px 7px;
+
+    color: var(--success);
+
+    border: 1px solid rgba(115, 229, 165, 0.16);
+    border-radius: 5px;
+
+    background: rgba(115, 229, 165, 0.035);
+
+    font-size: 7px;
+    font-weight: 850;
+
+    letter-spacing: 0.12em;
+}
+
+.activity-list {
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 4px;
+}
+
+.activity-item {
+    position: relative;
+
+    display: flex;
+    align-items: flex-start;
+
+    gap: 11px;
+
+    padding: 15px 2px;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.065);
+}
+
+.activity-item:last-child {
+    border-bottom: 0;
+}
+
+.activity-marker {
+    width: 6px;
+    height: 6px;
+
+    flex: 0 0 auto;
+
+    margin-top: 4px;
+
+    border-radius: 50%;
+
+    background: var(--success);
+
+    box-shadow:
+        0 0 9px rgba(115, 229, 165, 0.55);
+}
+
+.activity-item strong {
+    display: block;
+
+    color: rgba(255, 255, 255, 0.72);
+
+    font-size: 12px;
+    font-weight: 600;
+
+    line-height: 1.2;
+}
+
+.activity-item small {
+    display: block;
+
+    margin-top: 5px;
+
+    color: rgba(255, 255, 255, 0.33);
+
+    font-size: 10px;
+    font-weight: 400;
+
+    line-height: 1.25;
+}
+
+
+/* =========================================================
+   QUICK ACTIONS
+   ========================================================= */
+
+.quick-actions-section {
+    margin-top: 24px;
+}
+
+.quick-actions-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 11px;
+
+    margin-top: 12px;
+}
+
+
+/*
+ * All four Secure Operations buttons now intentionally
+ * use the same white/black visual treatment as LOCK VAULT.
+ */
+
+.quick-action {
+    min-height: 56px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 11px;
+
+    padding: 12px 15px;
+
+    color: #05070a;
+
+    background: #ffffff;
+
+    border: 1px solid #ffffff;
+    border-radius: 11px;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 0.13em;
+
+    text-align: left;
+
+    transition:
+        color 160ms ease,
+        background 160ms ease,
+        border-color 160ms ease,
+        transform 160ms ease,
+        box-shadow 160ms ease;
+}
+
+.quick-action:hover {
+    transform: translateY(-1px);
+
+    color: #05070a;
+
+    background: #ffffff;
+
+    border-color: #ffffff;
+
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.16);
+}
+
+.quick-action:active {
+    transform: translateY(0);
+}
+
+.quick-action:disabled {
+    cursor: not-allowed;
+
+    opacity: 0.70;
+
+    transform: none;
+
+    box-shadow: none;
+}
+
+
+/* =========================================================
+   QUICK ACTION ICONS
+   ========================================================= */
+
+.quick-action-icon {
+    width: 27px;
+    height: 27px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex: 0 0 auto;
+
+    color: #05070a;
+
+    border: 1px solid rgba(5, 7, 10, 0.16);
+    border-radius: 7px;
+
+    background: rgba(5, 7, 10, 0.045);
+
+    font-size: 17px;
+    font-weight: 300;
+
+    line-height: 1;
+}
+
+.quick-action:hover .quick-action-icon {
+    color: #05070a;
+
+    border-color: rgba(5, 7, 10, 0.20);
+
+    background: rgba(5, 7, 10, 0.055);
+}
+
+
+/* =========================================================
+   OWNER
+   ========================================================= */
+
+.dashboard-owner {
+    position: fixed;
+
+    left: 48px;
+    top: 72px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+
+    color: rgba(255, 255, 255, 0.40);
+
+    font-size: 8px;
+    font-weight: 800;
+
+    letter-spacing: 0.18em;
+
+    text-transform: uppercase;
+
+    z-index: 5;
+}
+
+.dashboard-owner-label {
+    color: rgba(255, 255, 255, 0.40);
+
+    font-size: 8px;
+    font-weight: 800;
+
+    letter-spacing: 0.18em;
+}
+
+.dashboard-owner-divider {
+    color: rgba(255, 255, 255, 0.40);
+}
+
+.dashboard-owner-name {
+    color: rgba(255, 255, 255, 0.40);
+
+    font-size: 8px;
+    font-weight: 800;
+
+    letter-spacing: 0.18em;
+}
+
+
+/* =========================================================
+   RESPONSIVE — TABLET
+   ========================================================= */
+
+@media (max-width: 1050px) {
+
+    .dashboard-shell {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    .dashboard-content {
+        padding-top: 38px;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .activity-panel {
+        min-height: auto;
+    }
+
+    .dashboard-owner {
+        left: 30px;
+        top: 63px;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — SMALL TABLET
+   ========================================================= */
+
+@media (max-width: 760px) {
+
+    .dashboard-shell {
+        padding:
+            0 20px 85px;
+    }
+
+    .dashboard-header {
+        min-height: 78px;
+    }
+
+    .dashboard-brand-title {
+        font-size: 25px;
+    }
+
+    .dashboard-brand-subtitle {
+        font-size: 7px;
+    }
+
+    .session-status {
+        display: none;
+    }
+
+    .dashboard-heading {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .vault-state {
+        width: 100%;
+    }
+
+    .summary-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .credential-item {
+        grid-template-columns:
+            24px
+            minmax(100px, 1fr)
+            minmax(90px, 1fr)
+            auto;
+    }
+
+    .credential-password {
+        display: none;
+    }
+
+    .dashboard-owner {
+        left: 20px;
+        top: 63px;
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE — MOBILE
+   ========================================================= */
+
+@media (max-width: 520px) {
+
+    .dashboard-shell {
+        padding:
+            0 15px 90px;
+    }
+
+    .dashboard-header {
+        min-height: 72px;
+    }
+
+    .dashboard-brand {
+        gap: 9px;
+    }
+
+    .dashboard-brand-mark {
+        width: 36px;
+        height: 36px;
+
+        border-radius: 10px;
+    }
+
+    .dashboard-brand-title {
+        font-size: 21px;
+    }
+
+    .dashboard-brand-subtitle {
+        margin-top: 4px;
+
+        font-size: 6px;
+
+        letter-spacing: 0.14em;
+    }
+
+    .logout-button {
+        padding: 8px 9px;
+
+        font-size: 7px;
+    }
+
+    .dashboard-content {
+        padding-top: 30px;
+    }
+
+    .dashboard-heading h1 {
+        font-size: 26px;
+    }
+
+    .dashboard-heading p {
+        max-width: 95%;
+
+        font-size: 10px;
+    }
+
+    .summary-grid {
+        grid-template-columns: 1fr;
+
+        gap: 9px;
+    }
+
+    .summary-card {
+        min-height: 96px;
+    }
+
+    .glass-panel {
+        padding: 17px;
+    }
+
+    .panel-header h2 {
+        font-size: 16px;
+    }
+
+    .credential-item {
+        grid-template-columns:
+            24px
+            1fr
+            auto;
+
+        gap: 8px;
+
+        min-height: 62px;
+    }
+
+    .credential-username {
+        grid-column: 2;
+
+        margin-top: -4px;
+    }
+
+    .credential-actions {
+        grid-column: 3;
+        grid-row: 1 / span 2;
+    }
+
+    .quick-actions-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .dashboard-owner {
+        left: 15px;
+        top: 58px;
+    }
+
+}
+
+
+/* =========================================================
+   DASHBOARD DIALOGS & TOASTS
+   ========================================================= */
+
+.credential-detail-overlay {
+    position: fixed;
+    inset: 0;
+
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 25px;
+
+    background:
+        rgba(0, 0, 0, 0.58);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.credential-detail-card {
+    width: min(430px, 100%);
+
+    padding: 25px;
+
+    border: 1px solid rgba(255, 255, 255, 0.17);
+    border-radius: 17px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.075),
+            rgba(255, 255, 255, 0.025)
+        ),
+        rgba(7, 10, 15, 0.88);
+
+    box-shadow:
+        0 30px 90px rgba(0, 0, 0, 0.50),
+        inset 0 1px 0 rgba(255, 255, 255, 0.07);
+
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+}
+
+.credential-detail-card h2 {
+    margin-top: 8px;
+
+    color: #ffffff;
+
+    font-size: 20px;
+    font-weight: 650;
+
+    letter-spacing: -0.025em;
+}
+
+.credential-detail-row,
+.security-status-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding: 13px 0;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.credential-detail-row:first-of-type,
+.security-status-row:first-child {
+    margin-top: 18px;
+}
+
+.credential-detail-row span,
+.security-status-row span {
+    color: rgba(255, 255, 255, 0.38);
+
+    font-size: 8px;
+    font-weight: 800;
+
+    letter-spacing: 0.14em;
+}
+
+.credential-detail-row strong,
+.security-status-row strong {
+    max-width: 65%;
+
+    overflow: hidden;
+
+    color: #ffffff;
+
+    font-size: 10px;
+    font-weight: 600;
+
+    text-align: right;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.revealed-password {
+    font-family:
+        "Cascadia Code",
+        Consolas,
+        monospace;
+
+    letter-spacing: 0.04em;
+}
+
+.credential-detail-close,
+.credential-detail-submit {
+    margin-top: 19px;
+
+    padding: 10px 13px;
+
+    color: rgba(255, 255, 255, 0.72);
+
+    background:
+        rgba(255, 255, 255, 0.045);
+
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    border-radius: 8px;
+
+    font-size: 8px;
+    font-weight: 800;
+
+    letter-spacing: 0.13em;
+}
+
+.credential-detail-close:hover {
+    color: #ffffff;
+
+    background:
+        rgba(255, 255, 255, 0.075);
+
+    border-color:
+        rgba(255, 255, 255, 0.22);
+}
+
+.credential-detail-submit {
+    color: #080a0e;
+
+    background: #f2f4f7;
+
+    border-color: #f2f4f7;
+}
+
+.credential-detail-submit:hover {
+    background: #ffffff;
+}
+
+.dialog-field {
+    display: block;
+
+    margin-top: 15px;
+}
+
+.dialog-field span {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: rgba(255, 255, 255, 0.42);
+
+    font-size: 8px;
+    font-weight: 800;
+
+    letter-spacing: 0.14em;
+}
+
+.dialog-field input {
+    width: 100%;
+
+    padding: 11px 12px;
+
+    color: #ffffff;
+
+    background:
+        rgba(0, 0, 0, 0.20);
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+
+    outline: none;
+
+    font-size: 10px;
+}
+
+.dialog-field input:focus {
+    border-color:
+        rgba(255, 255, 255, 0.30);
+}
+
+.dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+
+    gap: 8px;
+
+    margin-top: 3px;
+}
+
+.dialog-actions button {
+    margin-top: 15px;
+}
+
+.dashboard-toast {
+    position: fixed;
+
+    right: 28px;
+    bottom: 28px;
+
+    z-index: 1200;
+
+    max-width: min(360px, calc(100vw - 40px));
+
+    padding: 12px 16px;
+
+    color: rgba(255, 255, 255, 0.88);
+
+    background:
+        rgba(7, 10, 15, 0.86);
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+
+    box-shadow:
+        0 18px 45px rgba(0, 0, 0, 0.30);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    font-size: 9px;
+    font-weight: 600;
+
+    letter-spacing: 0.03em;
+
+    opacity: 0;
+    transform: translateY(8px);
+
+    transition:
+        opacity 180ms ease,
+        transform 180ms ease;
+}
+
+.dashboard-toast.visible {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+
+@media (max-width: 520px) {
+
+    .credential-detail-overlay {
+        padding: 15px;
+    }
+
+    .credential-detail-card {
+        padding: 20px;
+    }
+
+    .dashboard-toast {
+        right: 15px;
+        bottom: 15px;
+    }
+
+}
